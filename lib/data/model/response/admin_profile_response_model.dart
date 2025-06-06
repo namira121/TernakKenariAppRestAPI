@@ -1,52 +1,52 @@
 import 'dart:convert';
 
-class Mahasiswa {
+class AdminProfileResponseModel {
     final String? message;
     final int? statusCode;
-    final Data? data;
+    final AdminProfile? data;
 
-    Mahasiswa({
+    AdminProfileResponseModel({
         this.message,
         this.statusCode,
         this.data,
     });
 
-    factory Mahasiswa.fromRawJson(String str) => Mahasiswa.fromJson(json.decode(str));
+    factory AdminProfileResponseModel.fromJson(String str) => AdminProfileResponseModel.fromMap(json.decode(str));
 
-    String toRawJson() => json.encode(toJson());
+    String toJson() => json.encode(toMap());
 
-    factory Mahasiswa.fromJson(Map<String, dynamic> json) => Mahasiswa(
+    factory AdminProfileResponseModel.fromMap(Map<String, dynamic> json) => AdminProfileResponseModel(
         message: json["message"],
         statusCode: json["status_code"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        data: json["data"] == null ? null : AdminProfile.fromMap(json["data"]),
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "message": message,
         "status_code": statusCode,
-        "data": data?.toJson(),
+        "data": data?.toMap(),
     };
 }
 
-class Data {
+class AdminProfile {
     final int? id;
     final String? name;
 
-    Data({
+    AdminProfile({
         this.id,
         this.name,
     });
 
-    factory Data.fromRawJson(String str) => Data.fromJson(json.decode(str));
+    factory AdminProfile.fromJson(String str) => AdminProfile.fromMap(json.decode(str));
 
-    String toRawJson() => json.encode(toJson());
+    String toJson() => json.encode(toMap());
 
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
+    factory AdminProfile.fromMap(Map<String, dynamic> json) => AdminProfile(
         id: json["id"],
         name: json["name"],
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
     };
