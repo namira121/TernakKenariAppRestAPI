@@ -26,6 +26,28 @@ class ServiceHttpClient {
     }
   }
 
+  Future<http.Response> postWithToken(String endPoint, Map<String, dynamic> body) async {
+    final url = Uri.parse("$baseUrl$endPoint");
+
+    try {
+      final token = await secureStorage.read(key: "authToken");
+
+      final response = await http.post(
+        url,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(body),
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception("POST with token request failed: $e");
+    }
+  }
+
   //GET
   Future<http.Response> get(String endPoint) async {
     final token = await secureStorage.read(key: "token");
