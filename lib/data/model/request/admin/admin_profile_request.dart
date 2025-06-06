@@ -1,17 +1,17 @@
 import 'dart:convert';
 
-class Mahasiswa {
+class AdminProfileRequestModel {
     final String? name;
 
-    Mahasiswa({
+    AdminProfileRequestModel({
         this.name,
     });
 
-    factory Mahasiswa.fromRawJson(String str) => Mahasiswa.fromJson(json.decode(str));
+    factory AdminProfileRequestModel.fromRawJson(String str) => AdminProfileRequestModel.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory Mahasiswa.fromJson(Map<String, dynamic> json) => Mahasiswa(
+    factory AdminProfileRequestModel.fromJson(Map<String, dynamic> json) => AdminProfileRequestModel(
         name: json["name"],
     );
 
