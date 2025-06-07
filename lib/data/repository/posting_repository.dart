@@ -27,7 +27,7 @@ class PostingRepository {
         log("Add burung Successful: ${profilResponse.message}");
         return Right(profilResponse);
       }else{
-        log("Add burung failed: $jsonResponse['message]");
+        log("Add burung failed: ${jsonResponse['message']}");
         return Left(jsonResponse['message'] ?? "Add burung failed");
       }
     }catch(e){
